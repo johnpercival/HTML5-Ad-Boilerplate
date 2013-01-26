@@ -12,9 +12,7 @@ framework, so you're free to architect your code in the way that you want.
 
 ## Quick start
 
-Choose one of the following options:
-
-1. Download the latest stable release from [htmlad5boilerplate.com](http://html5boilerplate.com/)
+1. Download the latest stable release from [htmlad5boilerplate.com](http://html5adboilerplate.com/)
 
 ## Features
 
@@ -22,11 +20,11 @@ Choose one of the following options:
 * IAB SafeFrames and MRAID support
 * Responsive and mobile friendly
 * Support for in-application and mobile web
+* Small file size
 
 ## Documentation
 
 coming soon...
-
 
 ## Contributing
 

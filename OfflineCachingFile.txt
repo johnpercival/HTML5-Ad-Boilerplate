@@ -1,0 +1,2 @@
+<!-- Offline asset caching -->
+relative-path-here	absolute-path-here(CDN)

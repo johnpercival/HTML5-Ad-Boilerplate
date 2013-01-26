@@ -1,0 +1,167 @@
+/*
+ * HTML5 Ad Boilerplate
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+body {
+    line-height: 1.2;
+    letter-spacing:-0.2em;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #000, 3px 3px 5px #000;
+}
+
+.adContainer {
+    -webkit-perspective: 300;
+    perspective: 300;
+
+    background: #7abcff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #1899e2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#1899e2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#1899e2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#1899e2 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#1899e2 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #7abcff 0%,#60abf8 44%,#1899e2 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#1899e2',GradientType=0 ); /* IE6-9 */
+
+    -webkit-transform : translateZ(0);
+    -o-transform : translateZ(0);
+    -moz-transform : translateZ(0);
+    transform : translateZ(0);
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out; /* Firefox 4 */
+    -webkit-transition: all .2s ease-in-out; /* Safari and Chrome */
+    -o-transition: all .2s ease-in-out; /* Opera */
+    -ms-transition: all .2s ease-in-out; /* IE10 */
+
+    float: left;
+    overflow: hidden;
+}
+
+/* Heading kerning pairs and ligatures */
+.adContainer h1, .adContainer h2, .adContainer h3, .adContainer p { text-rendering: optimizeLegibility; }
+
+.adContainer video, .adContainer canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Ad Design.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 320px) {
+    /* Style adjustments for viewports that meet the condition */
+    .adContainer {
+        width: 300px;
+        height: 50px;
+    }
+    h1 {
+      font-size: 1em;
+    }
+    h2 {
+      font-size: 1em;
+    }
+    p {
+      font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .adContainer {
+        width: 468px;
+        height: 60px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    h2 {
+      font-size: 1.2em;
+    }
+    p {
+      font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .adContainer {
+        width: 300px;
+        height: 250px;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    p {
+      font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .adContainer {
+        width: 728px;
+        height: 90px;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    p {
+      font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .adContainer {
+        width: 300px;
+        height: 600px;
+    }
+    h1 {
+      font-size: 4em;
+    }
+    h2 {
+      font-size: 3.2em;
+    }
+    p {
+      font-size: 2em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .adContainer {
+        width: 960px;
+        height: 60px;
+    }
+    h1 {
+      font-size: 5em;
+    }
+    h2 {
+      font-size: 3.2em;
+    }
+    p {
+      font-size: 2em;
+    }
+}
