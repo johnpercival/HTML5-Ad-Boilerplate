@@ -1,26 +1,35 @@
 /*
- * HTML5 Ad Boilerplate
+ * HTML5 Ad Boilerplate CSS
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: #1899e2;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: #1899e2;
     text-shadow: none;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
 }
 
 body {
     line-height: 1.2;
-    letter-spacing:-0.2em;
     font-family: 'Arial', sans-serif;
     font-size: 14px;
     text-align: center;
     color: #fff;
-    cursor: pointer;
     text-shadow: 1px 1px 1px #000, 3px 3px 5px #000;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.adContainer * {
+    margin: 0px;
+    padding: 0px;
 }
 
 .adContainer {
@@ -45,123 +54,11 @@ body {
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
 
-    transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out; /* Firefox 4 */
-    -webkit-transition: all .2s ease-in-out; /* Safari and Chrome */
-    -o-transition: all .2s ease-in-out; /* Opera */
-    -ms-transition: all .2s ease-in-out; /* IE10 */
-
     float: left;
     overflow: hidden;
 }
 
 /* Heading kerning pairs and ligatures */
-.adContainer h1, .adContainer h2, .adContainer h3, .adContainer p { text-rendering: optimizeLegibility; }
-
-.adContainer video, .adContainer canvas {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Ad Design.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 320px) {
-    /* Style adjustments for viewports that meet the condition */
-    .adContainer {
-        width: 300px;
-        height: 50px;
-    }
-    h1 {
-      font-size: 1em;
-    }
-    h2 {
-      font-size: 1em;
-    }
-    p {
-      font-size: 1em;
-    }
-}
-
-@media only screen and (min-width: 480px) {
-    .adContainer {
-        width: 468px;
-        height: 60px;
-    }
-    h1 {
-      font-size: 2em;
-    }
-    h2 {
-      font-size: 1.2em;
-    }
-    p {
-      font-size: 1em;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    .adContainer {
-        width: 300px;
-        height: 250px;
-    }
-    h1 {
-      font-size: 3em;
-    }
-    h2 {
-      font-size: 2.2em;
-    }
-    p {
-      font-size: 1.5em;
-    }
-}
-
-@media only screen and (min-width: 960px) {
-    .adContainer {
-        width: 728px;
-        height: 90px;
-    }
-    h1 {
-      font-size: 3em;
-    }
-    h2 {
-      font-size: 2.2em;
-    }
-    p {
-      font-size: 1.5em;
-    }
-}
-
-@media only screen and (min-width: 1024px) {
-    .adContainer {
-        width: 300px;
-        height: 600px;
-    }
-    h1 {
-      font-size: 4em;
-    }
-    h2 {
-      font-size: 3.2em;
-    }
-    p {
-      font-size: 2em;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .adContainer {
-        width: 960px;
-        height: 60px;
-    }
-    h1 {
-      font-size: 5em;
-    }
-    h2 {
-      font-size: 3.2em;
-    }
-    p {
-      font-size: 2em;
-    }
+.adContainer h1, .adContainer h2, .adContainer h3, .adContainer p {
+    text-rendering: optimizeLegibility;
 }

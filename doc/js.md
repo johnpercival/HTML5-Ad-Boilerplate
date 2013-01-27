@@ -1,31 +1,33 @@
-[HTML5 Boilerplate homepage](http://html5boilerplate.com) | [Documentation
+[HTML5 Ad Boilerplate homepage](http://html5adboilerplate.com) | [Documentation
 table of contents](TOC.md)
 
 # The JavaScript
 
 Information about the default JavaScript included in the project.
 
-## main.js
+## adMain.js
 
-This file can be used to contain or reference your site/app JavaScript code.
-For larger projects, you can make use of a JavaScript module loader, like
-[Require.js](http://requirejs.org/), to load any other scripts you need to
-run.
+This file contains a global 'AD' object for accessing the properties and methods of
+the ad. Things kick off in the main index.htmk with 'Ad.init(params);
+some basic features in the JS file include:
+	- DNT Information
+	- Pixel Density Check
+	- Orientation Check
+	- Geolocation (if required)
+	- Dynamic ad border (if required)
+	- Page Visibility API
+	- Accelerometer Check (if required)
+	- IAB's MRAID support (if required)
 
-## plugins.js
+Remember to remove features you do not need and minify, compress and serve off a CDN.
 
-This file can be used to contain all your plugins, such as jQuery plugins and
-other 3rd party scripts.
+## mraidClient.js
 
-One approach is to put jQuery plugins inside of a `(function($){ ...
-})(jQuery);` closure to make sure they're in the jQuery namespace safety
-blanket. Read more about [jQuery plugin
-authoring](http://docs.jquery.com/Plugins/Authoring#Getting_Started)
+This file is an adapter file for interfacing with the [IAB's MRAID API](http://www.iab.net/mraid).
 
-## vendor
+From within the Ad.init, you can pass a value of mraid:true if your ad requires MRAID support.
+NOTE: Be sure to uncomment the mraid.js script tag in the head of your index.html.
 
-This directory can be used to contain all 3rd party library code.
+## safeFrameClient.js
 
-Minified versions of the latest jQuery and Modernizr libraries are included by
-default. You may wish to create your own [custom Modernizr
-build](http://www.modernizr.com/download/).
+Coming soon...

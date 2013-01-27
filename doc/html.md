@@ -1,55 +1,13 @@
-[HTML5 Boilerplate homepage](http://html5boilerplate.com) | [Documentation
+[HTML5 Ad Boilerplate homepage](http://html5adboilerplate.com) | [Documentation
 table of contents](TOC.md)
 
 # The HTML
 
-## Conditional `html` classes
-
-A series of IE conditional comments apply the relevant IE-specific classes to
-the `html` tag. This provides one method of specifying CSS fixes for specific
-legacy versions of IE. While you may or may not choose to use this technique in
-your project code, HTML5 Boilerplate's default CSS does not rely on it.
-
-When using the conditional classes technique, applying classes to the `html`
-element has several benefits:
-
-* It avoids a [file blocking
-  issue](http://webforscher.wordpress.com/2010/05/20/ie-6-slowing-down-ie-8/)
-  discovered by Stoyan Stefanov and Markus Leptien.
-* It avoids the need for an empty comment that also fixes the above issue.
-* CMSes like WordPress and Drupal use the body class more heavily. This makes
-  integrating there a touch simpler.
-* It still validates as HTML5.
-* It uses the same element as Modernizr (and Dojo). That feels nice.
-* It can improve the clarity of code in multi-developer teams.
-
-
-## The `no-js` class
-
-Allows you to more easily explicitly add custom styles when JavaScript is
-disabled (`no-js`) or enabled (`js`). More here: [Avoiding the
-FOUC](http://paulirish.com/2009/avoiding-the-fouc-v3/).
-
-
-## The order of meta tags, and `<title>`
-
-As recommended by [the HTML5
-spec](http://www.whatwg.org/specs/web-apps/current-work/complete/semantics.html#charset)
-(4.2.5.5 Specifying the document's character encoding), add your charset
-declaration early (before any ASCII art ;) to avoid a potential
-[encoding-related security
-issue](http://code.google.com/p/doctype/wiki/ArticleUtf7) in IE. It should come
-in the first [1024
-bytes](http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#charset).
-
-The charset should also come before the `<title>` tag, due to [potential XSS
-vectors](http://code.google.com/p/doctype-mirror/wiki/ArticleUtf7).
-
-The meta tag for compatibility mode [needs to be before all elements except
-title and meta](http://h5bp.com/f "Defining Document Compatibility - MSDN").
-And that same meta tag can only be invoked for Google Chrome Frame if it is
-within the [first 1024
-bytes](http://code.google.com/p/chromium/issues/detail?id=23003).
+## The adsize meta tag.
+<meta name='adsize' content='width:300,height:250'>
+This ad specific meta tag describes the width and height of the ad to the
+ad server. Be sure to keep this in the <head> of the main document and if it's
+a responsive ad tag, just include the default width value.
 
 
 ## X-UA-Compatible
@@ -88,71 +46,17 @@ intranet sites in Compatibility View' is checked by default.
 There are a few different options that you can use with the [`viewport` meta
 tag](https://docs.google.com/present/view?id=dkx3qtm_22dxsrgcf4 "Viewport and
 Media Queries - The Complete Idiot's Guide"). You can find out more in [the
-Apple developer docs](http://j.mp/mobileviewport). HTML5 Boilerplate comes with
+Apple developer docs](http://j.mp/mobileviewport). HTML5 Ad Boilerplate comes with
 a simple setup that strikes a good balance for general use cases.
 
 ```html
 <meta name="viewport" content="width=device-width">
 ```
 
-## Favicons and Touch Icons
-
-The shortcut icons should be put in the root directory of your site. HTML5
-Boilerplate comes with a default set of icons (include favicon and Apple Touch
-Icons) that you can use as a baseline to create your own.
-
-If your site or icons are in a sub-directory, you will need to reference the
-icons using `link` elements placed in the HTML `head` of your document.
-
-For a comprehensive overview, please read [Everything you always wanted to know
-about touch icons](http://mathiasbynens.be/notes/touch-icons) by Mathias
-Bynens.
-
-
-## Modernizr
-
-HTML5 Boilerplate uses a custom build of Modernizr.
-
-[Modernizr](http://modernizr.com) is a JavaScript library which adds classes to
-the `html` element based on the results of feature test and which ensures that
-all browsers can make use of HTML5 elements (as it includes the HTML5 Shiv).
-This allows you to target parts of your CSS and JavaScript based on the
-features supported by a browser.
-
-In general, in order to keep page load times to a minimum, it's best to call
-any JavaScript at the end of the page because if a script is slow to load
-from an external server it may cause the whole page to hang. That said, the
-Modernizr script *needs* to run *before* the browser begins rendering the page,
-so that browsers lacking support for some of the new HTML5 elements are able to
-handle them properly. Therefore the Modernizr script is the only JavaScript
-file synchronously loaded at the top of the document.
-
-
 ## The content area
 
 The central part of the boilerplate template is pretty much empty. This is
-intentional, in order to make the boilerplate suitable for both web page and
-web app development.
-
-### Google Chrome Frame
-
-The main content area of the boilerplate includes a prompt to install Chrome
-Frame (which no longer requires administrative rights) for users of IE 6. If
-you intended to support IE 6, then you should remove the snippet of code.
-
-### Google CDN for jQuery
-
-The Google CDN version of the jQuery JavaScript library is referenced towards
-the bottom of the page using a protocol-independent path (read more about this
-in the [FAQ](faq.md)). A local fallback of jQuery is included for rare instances
-when the CDN version might not be available, and to facilitate offline
-development.
-
-Regardless of which JavaScript library you choose to use, it is well worth the
-time and effort to look up and reference the Google CDN (Content Delivery
-Network) version. Your users may already have this version cached in their
-browsers, and Google's CDN is likely to deliver the asset faster than your
-server.
+intentional, in order to make the boilerplate suitable for ad development.
 
 ### Google Analytics Tracking Code
 

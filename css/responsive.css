@@ -1,0 +1,139 @@
+/*
+ * HTML5 Ad Responsive CSS
+ */
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Ad Design.
+   Modify breakpoints as publisher content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 320px) {
+    /* Style adjustments for viewports that meet the condition */
+    .adContainer {
+        width: 300px;
+        height: 50px;
+        letter-spacing:0em;
+    }
+    h1 {
+      font-size: 1em;
+    }
+    h2 {
+      font-size: 1em;
+    }
+    p {
+      font-size: 1em;
+    }
+    button {
+        position: relative;
+        top: -5px;
+        font-size: .6em;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .adContainer {
+        width: 468px;
+        height: 60px;
+        letter-spacing:-0.1em;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    h2 {
+      font-size: 1.2em;
+    }
+    p {
+      font-size: 1em;
+    }
+    button {
+        position: relative;
+        top: -10px;
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .adContainer {
+        width: 300px;
+        height: 250px;
+        letter-spacing:-0.2em;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    p {
+      font-size: 1.5em;
+    }
+    button {
+        position: relative;
+        top: 20px;
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .adContainer {
+        width: 728px;
+        height: 90px;
+        letter-spacing:-0.2em;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    p {
+      font-size: 1.5em;
+    }
+    button {
+        position: relative;
+        top: -5px;
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .adContainer {
+        width: 300px;
+        height: 600px;
+        letter-spacing:-0.2em;
+    }
+    h1 {
+      font-size: 4em;
+    }
+    h2 {
+      font-size: 3.2em;
+    }
+    p {
+      font-size: 2em;
+    }
+    button {
+        position: relative;
+        top: 150px;
+        font-size: 2em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .adContainer {
+        width: 970px;
+        height: 90px;
+        letter-spacing:-0.2em;
+    }
+    h1 {
+      font-size: 5em;
+    }
+    h2 {
+      font-size: 3.2em;
+    }
+    p {
+      font-size: 2em;
+    }
+    button {
+        display: none;
+    }
+}

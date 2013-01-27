@@ -5,19 +5,15 @@
         <meta name='viewport' content='width=device-width'>
         <!--Update to your ads dimensions-->
         <meta name='adsize' content='width:300,height:250'>
-
+        <link rel='stylesheet' href='css/responsive.css'>
         <link rel='stylesheet' href='css/adMain.css'>
-
         <!-- Uncomment for MRAID support -->
         <!--<script defer src='mraid.js'></script>-->
     </head>
-    <body data-clickTag1='http://www.example.com' data-clickTag2='http://www.example.com'>
+    <body data-clickTag='http://www.example.com'>
         <section class='adContainer'>
             <!-- Add your site or application content here -->
             <h1>This is HTML5 Ad Boilerplate.</h1>
-            <!-- Interactive Elements -->
-            <button id='adBtn1'>CTA Button 1</button>
-            <button id='adBtn2'>CTA Button 2</button>
         </section>
 
         <script defer src='js/adMain.js'></script>
@@ -25,7 +21,6 @@
         <script>
         window.onload = function() {
           Ad.init({
-            'responsive': true,
             'expand':false,
             'mraid':false,
             'safeFrame':false

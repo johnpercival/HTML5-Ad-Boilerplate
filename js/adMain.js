@@ -10,11 +10,28 @@ var Ad = {
   isMobile: navigator.userAgent.toLowerCase().indexOf('mobile'),
   isAndroid: navigator.userAgent.toLowerCase().indexOf('android') > -1,
   publisher: window.location.hostname,
+  mraid: false,
+  safeFrame: false,
 
   // The one function that will get called to kick things off - NOTE: Try to keep the initial load around 75-100k
 
   init: function(params) {
-    //create ad border
+    var mainScope = this;//get reference to AD object
+
+    //pixel density check
+    console.log('Device Pixel Density: ' + mainScope.getDevicePixelRatio());
+
+    //get device orientation
+    window.onorientationchange = mainScope.setOrientation;
+
+    //need location?
+    if(navigator.geolocation) {
+      mainScope.getUserLocation();
+    } else {
+      console.warn('Browser does not support geolocation')
+    }
+
+    //create ad border (optional)
     var ad = document.querySelector('.adContainer');
     var adW = window.getComputedStyle(ad,null).getPropertyValue('width');
     var adH = window.getComputedStyle(ad,null).getPropertyValue('height');
@@ -22,25 +39,6 @@ var Ad = {
     ad.style.width = adW;
     ad.style.height = adH;
 
-    //pixel density check
-    console.log('Device Pixel Density: ' + this.getDevicePixelRatio());
-
-    //get device orientation
-    window.onorientationchange = this.setOrientation;
-
-    //need location?
-    if(navigator.geolocation) {
-      this.getUserLocation();
-    } else {
-      console.warn('Browser does not support geolocation')
-    }
-
-    //responsive
-    if(params.responsive) {
-      console.log('This is a responsive ad');
-    } else {
-      console.log('This is not a responsive ad');
-    }
 
     //detect page visibility - sam dutton (google)
     var hidden, visibilityChange;
@@ -58,35 +56,21 @@ var Ad = {
       visibilityChange = "webkitvisibilitychange";
     }
     if (typeof document.addEventListener === "undefined" || typeof hidden === "undefined") {
-      alert("This demo requires a browser such as Google Chrome that supports the Page Visibility API.");
+      console.warn("This demo requires a browser such as Google Chrome that supports the Page Visibility API.");
     } else {
-       document.addEventListener(visibilityChange, this.handleVisibilityChange, false);
+       document.addEventListener(visibilityChange, mainScope.handleVisibilityChange, false);
     }
-
-
-    //localStorage or sessionStorage
-
-
-    //swipe
-    ad.addEventListener('touchmove', function(event) {
-      // If there's exactly one finger inside this element
-      if (event.targetTouches.length == 1) {
-        var touch = event.targetTouches[0];
-        // Place element where the finger is
-        ad.style.left = touch.pageX + 'px';
-        ad.style.top = touch.pageY + 'px';
-      }
-    }, false);
 
     //accelerometer
     if (window.DeviceOrientationEvent || window.OrientationEvent) {
-      //this.tiltHandler();
+      mainScope.tiltHandler();
     } else {
       console.warn('Browser does not support orientation');
     }
 
     //IAB's Rich Media API's (MRAID & SAFEFRAMES)
     if (params.mraid) {
+      mainScope.mraid = params.mraid;
       var mScript = document.createElement('script');
       mScript.type = 'text/javascript';
       mScript.src = 'js/mraidClient.js';
@@ -95,19 +79,24 @@ var Ad = {
       window.addEventListener('doneLoading', console.log('MRAID API Installed'), false);
     } else if(params.safeFrame) {
       //IAB safe frame support coming soon.
-      //post message to communicate to the pub page
+      //post message to communicate to the pub page iFrame
       console.log('SafeFrames API installed');
     }
 
     if (params.expand) {
       console.log('Ad is an expand');
-      //wire up interactions for ad
-      this.bindExpandActions();
+      mainScope.bindExpandActions();
     } else {
       console.log('Ad is an interstital');
+      //wire up global click interaction for ad
+      ad.addEventListener(mainScope.interactionAction, function () {
+        var url = document.querySelector('body').getAttribute('data-clickTag');
+        mainScope.openURL(url);
+      }, false);
+
     }
 
-    console.log(adW + ' ' +  adH + ' ad on ' + this.publisher + ' with DNT set to ' + this.DNT);
+    console.log(adW + ' ' +  adH + ' ad on ' + mainScope.publisher + ' with DNT set to ' + mainScope.DNT);
 
   },
 
@@ -117,27 +106,18 @@ var Ad = {
   //-------------------------------
 
   bindExpandActions: function() {
-    //buttons
+    //buttons for rich media expand
     var adButtons = document.querySelectorAll('button');
     var action = this.interactionAction;
     for (var i = 0; i < adButtons.length; i++) {
+      adButtons[i].removeAttribute('hidden');
       adButtons[i].addEventListener(action, this.buttonHandler(event), false);
     }
 
   },
 
   buttonHandler: function(event) {
-    switch (event.target.id) {
-      case 'adBtn1':
-        //handle this btn
-        var url = document.querySelector('body').getAttribute('data-clickTag1');
-        _Ad.openURL(url);
-        break;
-      case 'adBtn2':
-        var url = document.querySelector('body').getAttribute('data-clickTag2');
-        _Ad.openURL(url);
-        break;
-    };
+    console.log(event)
   },
 
   tiltHandler: function(event) {
@@ -179,7 +159,7 @@ var Ad = {
 
   deviceOrientationHandler: function(tiltLR, tiltFB, dir, motionUD) {
     // Apply the transform to the dummy image
-    var vid = document.querySelector('section');
+    var vid = document.querySelector('body');
     vid.style.webkitTransform = 'rotate(' + tiltLR + 'deg) rotate3d(1,0,0, ' + (tiltFB * -1) + 'deg)';
     vid.style.MozTransform = 'rotate(' + tiltLR + 'deg)';
     vid.style.transform = 'rotate(' + tiltLR + 'deg) rotate3d(1,0,0, ' + (tiltFB * -1) + 'deg)';
@@ -212,7 +192,7 @@ var Ad = {
   //-------------------------------
 
   openURL: function (url) {
-    if(mraid) {
+    if(this.mraid) {
       mraid.launchURL(url);
     } else {
       window.open(url);
@@ -220,7 +200,7 @@ var Ad = {
   },
 
   expandAd: function() {
-    if(mraid) {
+    if(this.mraid) {
       mraid.expandAd(this.adWidth, this.adHeight);
     }
     console.log('Ad Expand');
@@ -228,7 +208,7 @@ var Ad = {
   },
 
   closeAd: function() {
-    if(mraid) {
+    if(this.mraid) {
       mraid.closeAd();
     }
     console.log('Ad Closed');
@@ -301,10 +281,3 @@ var Ad = {
   }
 
 };
-
-
-
-
-
-
-
