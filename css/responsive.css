@@ -8,113 +8,105 @@
    ========================================================================== */
 
 @media only screen and (min-width: 320px) {
-    /* Style adjustments for viewports that meet the condition */
+    /*320px*/
+
+    /*short reading distance*/
+    p {
+        /*short line lengths (under 45 chars) */
+        font-size: 1rem; /* 16px */
+        line-height: 1.4;
+        margin-bottom: 1.4em; /* = line-height */
+    }
+    h3 {font-size: 1.125rem; /* 18px */}
+    h2 {font-size: 1.312rem; /* 21px */}
+    h1 {font-size: 1.5rem; /* 24px */}
+
     .adContainer {
         width: 300px;
         height: 50px;
         letter-spacing:0em;
     }
-    h1 {
-      font-size: 1em;
-    }
-    h2 {
-      font-size: 1em;
-    }
-    p {
-      font-size: 1em;
-    }
-    button {
-        position: relative;
-        top: -5px;
-        font-size: .6em;
-    }
 }
 
 @media only screen and (min-width: 480px) {
+    /*480px*/
+
+    /*short reading distance*/
+    p {
+        /*short line lengths (under 45 chars) */
+        font-size: 1rem; /* 16px */
+        line-height: 1.4;
+        margin-bottom: 1.4em; /* = line-height */
+    }
+    h3 {font-size: 1.125rem; /* 18px */}
+    h2 {font-size: 1.312rem; /* 21px */}
+    h1 {font-size: 1.5rem; /* 24px */}
+
     .adContainer {
         width: 468px;
         height: 60px;
         letter-spacing:-0.1em;
     }
-    h1 {
-      font-size: 2em;
-    }
-    h2 {
-      font-size: 1.2em;
-    }
-    p {
-      font-size: 1em;
-    }
-    button {
-        position: relative;
-        top: -10px;
-        font-size: 1em;
-    }
 }
 
 @media only screen and (min-width: 600px) {
+    /*600px*/
+
+    /*short reading distance*/
+    p {
+        /*short line lengths (under 45 chars) */
+        font-size: 1rem; /* 16px */
+        line-height: 1.4;
+        margin-bottom: 1.4em; /* = line-height */
+    }
+    h3 {font-size: 1.125rem; /* 18px */}
+    h2 {font-size: 1.312rem; /* 21px */}
+    h1 {font-size: 1.5rem; /* 24px */}
+
     .adContainer {
         width: 300px;
         height: 250px;
-        letter-spacing:-0.2em;
     }
-    h1 {
-      font-size: 3em;
-    }
-    h2 {
-      font-size: 2.2em;
-    }
-    p {
-      font-size: 1.5em;
-    }
-    button {
-        position: relative;
-        top: 20px;
-        font-size: 1.5em;
-    }
+
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 800px) {
+    /*800px*/
+
+    /*medium reading distance*/
+    p {
+        /*medium line lengths (under 45-60 chars) */
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.45;
+        margin-bottom: 1.45em; /* = line-height */
+    }
+    h3 {font-size: 1.312rem; /* 21px */}
+    h2 {font-size: 1.5rem; /* 24px */}
+    h1 {font-size: 2.25rem; /* 36px */}
+
     .adContainer {
         width: 728px;
         height: 90px;
-        letter-spacing:-0.2em;
-    }
-    h1 {
-      font-size: 3em;
-    }
-    h2 {
-      font-size: 2.2em;
-    }
-    p {
-      font-size: 1.5em;
-    }
-    button {
-        position: relative;
-        top: -5px;
-        font-size: 1em;
     }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1000px) {
+    /*1000px*/
+
+    /*long reading distance*/
+    p {
+        /*long line lengths (under 60-75 chars) */
+        font-size: 1.312rem; /* 21px */
+        line-height: 1.5;
+        margin-bottom: 1.5em; /* = line-height */
+    }
+    h3 {font-size: 1.5rem; /* 24px */}
+    h2 {font-size: 2.25rem; /* 36px */}
+    h1 {font-size: 3rem; /* 48px */}
+
     .adContainer {
         width: 300px;
         height: 600px;
-        letter-spacing:-0.2em;
-    }
-    h1 {
-      font-size: 4em;
-    }
-    h2 {
-      font-size: 3.2em;
-    }
-    p {
-      font-size: 2em;
-    }
-    button {
-        position: relative;
-        top: 150px;
-        font-size: 2em;
     }
 }
 
@@ -137,3 +129,5 @@
         display: none;
     }
 }
+
+

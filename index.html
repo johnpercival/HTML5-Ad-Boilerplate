@@ -2,30 +2,153 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-        <meta name='viewport' content='width=device-width'>
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
+
         <!--Update to your ads dimensions-->
         <meta name='adsize' content='width:300,height:250'>
-        <link rel='stylesheet' href='css/responsive.css'>
         <link rel='stylesheet' href='css/adMain.css'>
+
         <!-- Uncomment for MRAID support -->
         <!--<script defer src='mraid.js'></script>-->
-    </head>
-    <body data-clickTag='http://www.example.com'>
-        <section class='adContainer'>
-            <!-- Add your site or application content here -->
-            <h1>This is HTML5 Ad Boilerplate.</h1>
-        </section>
 
         <script defer src='js/adMain.js'></script>
+    </head>
+    <body>
+        <section class='adContainer' data-clickTag1='http://www.example.com'>
+            <!-- Add your ad content here -->
+            <h1>I am the HTML5 Ad Boilerplate.</h1>
+            <p>Helping you build ad creative quicker</p>
+            <!-- -->
+        </section>
 
         <script>
-        window.onload = function() {
-          Ad.init({
-            'expand':false,
-            'mraid':false,
-            'safeFrame':false
-          });
-        };
+            var ad;
+
+            window.onload = function() {
+                var ad = new HTML5Ad();//Create new HTML5 Ad
+
+                ad.init({
+                    'adContainer':'.adContainer',//target as class or ID
+                    'createAdBorder':true,//true || false
+                    'adType':'static',//expandable || interstitial || static
+                    'mraid':false,//true || false
+                    'safeFrame':false//true || false
+                });
+
+
+            };
+            window.addEventListener('adReady', function(e) {
+                console.info('Event is: ', e);
+
+                var adContainer = document.querySelector('.adContainer'),
+                    interactionAction = 'click' || 'touchend',
+                    url = adContainer.getAttribute('data-clickTag1');
+
+                //wire up global click interaction for ad
+                adContainer.addEventListener(interactionAction, function () {
+                    ad.openURL(url);
+                }, false);
+
+                //Need location?
+                if(navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(handleGeolocationQuery, handleLocationErrors);
+                } else {
+                  console.warn('Browser does not support geolocation')
+                }
+
+                //Need accelerometer?
+                if (window.DeviceOrientationEvent || window.OrientationEvent) {
+                  tiltHandler();
+                } else {
+                  console.warn('Browser does not support orientation');
+                }
+
+            });
+
+            window.addEventListener('adVisible', function(e) {
+                console.info('The ad is visible: ', e);
+            });
+            window.addEventListener('adHidden', function(e) {
+                console.info('The ad is hidden: ', e);
+            });
+            window.addEventListener('adExpand', function(e) {
+                console.info('The ad is expanded: ', e);
+            });
+            window.addEventListener('adClosed', function(e) {
+                console.info('The ad is closed: ', e);
+            });
+
+
+            //Location
+            //-------------------------------
+            function handleLocationErrors (error) {
+                switch (error.code) {
+                  case error.PERMISSION_DENIED:
+                      console.error('Error :>> user did not share geolocation data');
+                      break;
+                  case error.POSITION_UNAVAILABLE:
+                      console.error('Error :>> could not detect current position');
+                      break;
+                  case error.TIMEOUT:
+                      console.error('Error :>> retrieving position timed out');
+                      break;
+                  default:
+                      console.error('Error :>> unknown error');
+                      break;
+                }
+            }
+
+            function handleGeolocationQuery (position) {
+                myLat = position.coords.latitude;
+                myLong = position.coords.longitude;
+                console.log('Lat = ' + myLat + ' Long = ' + myLong);
+
+                //do something with the location data here
+            }
+
+            //Accelerometer
+            //--------------------------------
+            function tiltHandler (event) {
+                if (window.DeviceOrientationEvent) {
+                    window.addEventListener('deviceorientation', function (eventData) {
+                      // gamma is the left-to-right tilt in degrees, where right is positive
+                      var tiltLR = eventData.gamma;
+                      // beta is the front-to-back tilt in degrees, where front is positive
+                      var tiltFB = eventData.beta;
+                      // alpha is the compass direction the device is facing in degrees
+                      var dir = eventData.alpha
+                      // deviceorientation does not provide this data
+                      var motUD = null;
+                      // call our orientation event handler
+                      deviceOrientationHandler(tiltLR, tiltFB, dir, motUD);
+                    }, false);
+                } else if (window.OrientationEvent) {
+                    window.addEventListener('MozOrientation', function (eventData) {
+                      // x is the left-to-right tilt from -1 to +1, so we need to convert to degress
+                      var tiltLR = eventData.x * 90;
+                      // y is the front-to-back tilt from -1 to +1, so we need to convert to degress
+                      // We also need to invert the value so tilting the device towards us (forward)
+                      // results in a positive value.
+                      var tiltFB = eventData.y * -90;
+                      // MozOrientation does not provide this data
+                      var dir = null;
+                      // z is the vertical acceleration of the device
+                      var motUD = eventData.z;
+                      deviceOrientationHandler(tiltLR, tiltFB, dir, motUD);
+                    }, false);
+                }
+            }
+
+            function deviceOrientationHandler (tiltLR, tiltFB, dir, motionUD) {
+                // Apply the transform to the dummy image
+                var vid = document.querySelector('body');
+                vid.style.webkitTransform = 'rotate(' + tiltLR + 'deg) rotate3d(1,0,0, ' + (tiltFB * -1) + 'deg)';
+                vid.style.MozTransform = 'rotate(' + tiltLR + 'deg)';
+                vid.style.transform = 'rotate(' + tiltLR + 'deg) rotate3d(1,0,0, ' + (tiltFB * -1) + 'deg)';
+            }
+
+
+
         </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
